@@ -17,6 +17,7 @@
         <table class="table table-bordered">
             <thead">
                 <tr>
+                    <th class="table-header" scope="col">ID</th>
                     <th class="table-header" scope="col">Code</th>
                     <th class="table-header" scope="col">Name</th>
                     <th class="table-header" scope="col">Quantity</th>
@@ -27,6 +28,7 @@
             <tbody>
                 @forelse ($products as $product)
                     <tr>
+                        <td>{{ $product->id }}</td>
                         <td>{{ $product->code }}</td>
                         <td>{{ $product->name }}</td>
                         <td>{{ $product->quantity }}</td>

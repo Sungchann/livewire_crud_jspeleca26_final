@@ -11,6 +11,7 @@ class Create extends Component
 {
     use WithFileUploads;
 
+    public $code;
     public $name;
     public $description;
     public $quantity;
@@ -28,20 +29,19 @@ class Create extends Component
 
     public function save()
     {
-        $validated = $this->validate();
+        $validated = $this->validate([
+            'code' => 'required|string|unique:products,code',
+            'name' => 'required|string',
+            'quantity' => 'integer|required',
+            'price' => 'numeric|required',
+            'description' => 'nullable|string'
+        ]);
         
-        $lastProduct = Product::orderBy('id', 'desc')->first();
-        $nextId = $lastProduct ? $lastProduct->id + 1 : 1;
-        $productId = 'P' . $nextId;
 
-        if ($this->imageUrl) {
-            $imagePath = $this->imageUrl->store('products', 'public');
-            $validated['imageUrl'] = 'products/' . basename($imagePath);
-        }
-
-        $validated['id'] = $nextId;
-        $validated['code'] = $productId;
-
+        // if ($this->imageUrl) {
+        //     $imagePath = $this->imageUrl->store('products', 'public');
+        //     $validated['imageUrl'] = 'products/' . basename($imagePath);
+        // }
         Product::create($validated);
 
         session()->flash('message', 'Product added.');

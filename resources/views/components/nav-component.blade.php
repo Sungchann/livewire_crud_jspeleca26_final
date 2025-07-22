@@ -10,23 +10,8 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto align-items-center">
                 <li class="nav-item">
-                    <a class="btn p-2 px-3 d-flex align-items-center justify-content-center"
-                    style="background-color: white; color: #6366f1; border-radius: 20px;" href="#">
-                        Logout
-                    </a>
+                    <livewire:auth.logout />
                 </li>
-                {{-- Commented circular logout button with white bg and purple icon --}}
-                {{--
-                <li class="nav-item ms-3">
-                    <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-                        <button type="submit" class="btn rounded-circle p-2 d-flex align-items-center justify-content-center"
-                            style="width: 40px; height: 40px; background-color: white; color: #6366f1;" title="Logout">
-                            <i class="bi bi-box-arrow-right"></i>
-                        </button>
-                    </form>
-                </li>
-                --}}
             </ul>
         </div>
     </div>

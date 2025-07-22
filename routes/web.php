@@ -18,10 +18,12 @@ Route::get('/', function () {
 Route::get('/login', Login::class)->name('login');
 Route::get('/register', Register::class)->name('register');
 
-Route::get('/products', Index::class)->name('products');
-Route::get('/product/create', Create::class);
-Route::get('/product/edit/{id}', Edit::class);
-Route::get('/product/view/{id}', View::class);
+Route::middleware('auth')->group(function () {
+    Route::get('/products', Index::class)->name('products');
+    Route::get('/product/create', Create::class);
+    Route::get('/product/edit/{id}', Edit::class);
+    Route::get('/product/view/{id}', View::class);
+});
 
 
 

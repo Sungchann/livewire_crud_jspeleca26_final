@@ -22,7 +22,7 @@ class Index extends Component
             'showNav' => true,
         ]);
     }
-
+    
     public function delete($id)
     {
         Product::findOrFail($id)->delete();
