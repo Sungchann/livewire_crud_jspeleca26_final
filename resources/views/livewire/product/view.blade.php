@@ -40,7 +40,7 @@
         <div class="mb-3 text-center">
             <label class="form-label fw-medium">Image:</label><br>
             @if ($imageUrl)
-                <img src="{{ Storage::url($imageUrl) }}" alt="Product Image" class="img-fluid rounded" style="max-height: 200px;">
+                <img src="{{ asset('storage/' . $imageUrl) }}" alt="{{$imageUrl}}" class="img-fluid rounded" style="max-height: 200px;">
             @else
                 <p class="text-muted">No image available</p>
             @endif

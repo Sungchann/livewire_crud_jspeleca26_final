@@ -39,8 +39,8 @@
 
                 <div class="mb-2">
                     <label class="form-label fw-medium">Upload Image</label>
-                    <input wire:model="imageUrl" type="file" class="form-control" name="imageUrl">
-                    <!-- @error('imageUrl') <div class="text-danger small">{{ $message }}</div> @enderror -->
+                    <input type="file" wire:model="imageUrl" class="form-control">
+                    @error('imageUrl') <div class="text-danger small">{{ $message }}</div> @enderror
                 </div>
 
                 <div class="text-center">

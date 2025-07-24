@@ -36,11 +36,18 @@
 
         <div class="mb-2">
             <label class="form-label fw-medium">Upload Image</label>
-            <input wire:model="imageUrl" type="file" class="form-control" name="imageUrl">
-            <!-- @error('imageUrl') <div class="text-danger small">{{ $message }}</div> @enderror -->
+            <input wire:model="newImage" type="file" class="form-control">
+            @error('newImage') <div class="text-danger small">{{ $message }}</div> @enderror
         </div>
 
-        <!-- Buttons -->
+        @if($existingImage)
+        <div class="mb-3 text-center">
+            <label class="form-label fw-medium d-block">Current Image</label>
+            <img src="{{ asset('storage/' . $existingImage) }}" alt="Current Image" class="img-fluid rounded" style="max-height: 200px;">
+        </div>
+        @endif
+
+
         <div class="text-center">
             <button type="submit" class="btn btn-primary px-4 py-2 me-2">Update</button>
             <a wire:navigate href="/products" class="btn btn-link text-decoration-none">Cancel</a>

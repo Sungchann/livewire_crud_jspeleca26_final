@@ -4,11 +4,11 @@ namespace App\Livewire\Product;
 
 use Livewire\Component;
 use App\Models\Product;
-use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
 
 class Create extends Component
 {
+
     use WithFileUploads;
 
     public $code;
@@ -29,19 +29,21 @@ class Create extends Component
 
     public function save()
     {
+        // ADD imageUrl TO THE VALIDATION RULES HERE
         $validated = $this->validate([
             'code' => 'required|string|unique:products,code',
             'name' => 'required|string',
             'quantity' => 'integer|required',
             'price' => 'numeric|required',
-            'description' => 'nullable|string'
+            'description' => 'nullable|string',
+            'imageUrl' => 'nullable|image|max:1024' 
         ]);
-        
 
-        // if ($this->imageUrl) {
-        //     $imagePath = $this->imageUrl->store('products', 'public');
-        //     $validated['imageUrl'] = 'products/' . basename($imagePath);
-        // }
+        if ($this->imageUrl) {
+            $imagePath = $this->imageUrl->store('products', 'public');
+            $validated['imageUrl'] = $imagePath;
+        }
+
         Product::create($validated);
 
         session()->flash('message', 'Product added.');

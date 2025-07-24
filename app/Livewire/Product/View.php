@@ -25,7 +25,7 @@ class View extends Component
 
     public function delete()
     {
-        Product::findOrFail($this->productId)->delete();
+        Product::findOrFail($this->id)->delete();
         return redirect()->to('/products');
     }
 
